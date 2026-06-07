@@ -579,57 +579,101 @@ img{max-width:100%;display:block}
 }
 
 /* ═══════════════════════════════════════════
-   SERVICES — fondo azul muy claro
+   SERVICES — premium renovado
 ═══════════════════════════════════════════ */
 .services{
   background:var(--bg-blue);
   border-top:1px solid #DBEAFE;
   border-bottom:1px solid #DBEAFE;
+  position:relative;overflow:hidden;
+}
+/* Blobs decorativos de fondo en la sección */
+.services::before{
+  content:'';position:absolute;
+  width:500px;height:500px;border-radius:50%;
+  background:radial-gradient(circle,rgba(236,72,153,.06) 0%,transparent 70%);
+  top:-120px;right:-80px;pointer-events:none;
+}
+.services::after{
+  content:'';position:absolute;
+  width:400px;height:400px;border-radius:50%;
+  background:radial-gradient(circle,rgba(59,130,246,.07) 0%,transparent 70%);
+  bottom:-100px;left:-60px;pointer-events:none;
 }
 .services-grid{
   display:grid;
   grid-template-columns:repeat(3,1fr);
-  gap:24px;margin-top:64px;
+  gap:28px;margin-top:64px;
+  position:relative;z-index:1;
 }
+
+/* Card base */
 .s-card{
   background:var(--bg-white);
-  border:1px solid var(--bd);
-  border-radius:var(--rl);
-  padding:40px 32px;
-  box-shadow:var(--sh-sm);
-  transition:transform .28s,box-shadow .28s,border-color .28s;
+  border:1px solid rgba(226,232,240,.8);
+  border-radius:20px;
+  padding:0;
+  box-shadow:0 2px 12px rgba(15,23,42,.06),0 1px 3px rgba(15,23,42,.04);
+  transition:transform .3s cubic-bezier(.22,.68,0,1.2),
+             box-shadow .3s ease,
+             border-color .3s ease;
   position:relative;overflow:hidden;
   cursor:default;
 }
-/* Top accent line */
-.s-card::before{
-  content:'';position:absolute;top:0;left:0;right:0;height:3px;
-  background:var(--g-brand);transform:scaleX(0);transform-origin:left;
-  transition:transform .35s ease;
+
+/* Línea superior individual por card — siempre visible */
+.s-card .s-topbar{
+  height:3px;width:100%;display:block;
+  border-radius:20px 20px 0 0;
+  flex-shrink:0;
 }
+
+/* Contenido interno */
+.s-card-body{padding:36px 32px 38px}
+
 .s-card:hover{
-  transform:translateY(-7px);
-  box-shadow:var(--sh-lg);
-  border-color:rgba(59,130,246,.25);
+  transform:translateY(-8px) scale(1.01);
+  box-shadow:0 24px 60px rgba(15,23,42,.1),0 8px 20px rgba(15,23,42,.06);
+  border-color:rgba(226,232,240,.4);
 }
-.s-card:hover::before{transform:scaleX(1)}
-/* Corner glow */
+
+/* Glow de fondo en hover */
 .s-card .s-glow{
-  position:absolute;width:200px;height:200px;
-  border-radius:50%;top:-70px;right:-70px;
-  filter:blur(60px);opacity:0;
-  transition:opacity .4s;pointer-events:none;
+  position:absolute;
+  width:240px;height:240px;border-radius:50%;
+  top:-80px;right:-80px;
+  filter:blur(70px);opacity:0;
+  transition:opacity .45s;pointer-events:none;
 }
 .s-card:hover .s-glow{opacity:1}
 
+/* Ícono — más grande, más impacto */
 .s-icon{
-  width:58px;height:58px;border-radius:16px;
+  width:68px;height:68px;border-radius:18px;
   display:flex;align-items:center;justify-content:center;
-  margin-bottom:24px;
+  margin-bottom:26px;
+  position:relative;
+  transition:transform .3s,box-shadow .3s;
 }
-.s-icon svg{width:26px;height:26px;fill:none;stroke-width:2}
-.s-card h3{font-size:1.1rem;font-weight:700;color:var(--tx);margin-bottom:12px}
-.s-card p{font-size:.9rem;color:var(--tx-3);line-height:1.75}
+.s-card:hover .s-icon{transform:scale(1.08)}
+.s-icon svg{width:32px;height:32px;fill:none;stroke-width:2;transition:stroke .3s}
+
+/* Texto */
+.s-card h3{
+  font-size:1.12rem;font-weight:800;
+  color:var(--tx);margin-bottom:12px;
+  letter-spacing:-.015em;
+}
+.s-card p{font-size:.9rem;color:var(--tx-3);line-height:1.78}
+
+/* Tag de servicio */
+.s-tag{
+  display:inline-flex;align-items:center;gap:5px;
+  margin-top:22px;
+  font-size:.72rem;font-weight:700;letter-spacing:.08em;
+  text-transform:uppercase;
+}
+.s-tag svg{width:12px;height:12px;fill:none;stroke-width:2.5}
 
 /* ═══════════════════════════════════════════
    PORTFOLIO — blanco
@@ -1344,31 +1388,55 @@ footer{
     <p class="section-sub">Desde la idea hasta el lanzamiento, cubrimos cada etapa del proceso digital con excelencia y dedicación.</p>
     <div class="services-grid">
 
+      <!-- Diseño Web — línea fucsia -->
       <div class="s-card">
-        <div class="s-glow" style="background:rgba(236,72,153,.25)"></div>
-        <div class="s-icon" style="background:linear-gradient(135deg,#FCE7F3,#FDF2FF)">
-          <svg viewBox="0 0 24 24" stroke="#EC4899"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/></svg>
+        <div class="s-glow" style="background:rgba(236,72,153,.28)"></div>
+        <span class="s-topbar" style="background:linear-gradient(90deg,#EC4899,#F472B6)"></span>
+        <div class="s-card-body">
+          <div class="s-icon" style="background:linear-gradient(135deg,#FCE7F3 0%,#FDF4FF 100%);box-shadow:0 4px 18px rgba(236,72,153,.15)">
+            <svg viewBox="0 0 24 24" stroke="#EC4899"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/></svg>
+          </div>
+          <h3>Diseño Web Estratégico</h3>
+          <p>Diseñamos sitios modernos, intuitivos y orientados a la conversión. UX/UI centrado en tu audiencia y tus objetivos de negocio.</p>
+          <div class="s-tag" style="color:#EC4899">
+            <svg viewBox="0 0 24 24" stroke="#EC4899"><polyline points="9 18 15 12 9 6"/></svg>
+            UX · UI · Conversión
+          </div>
         </div>
-        <h3>Diseño Web</h3>
-        <p>Diseñamos sitios modernos, intuitivos y orientados a la conversión. UX/UI centrado en tu audiencia y tus objetivos de negocio.</p>
       </div>
 
+      <!-- Desarrollo Web — línea violeta -->
       <div class="s-card">
-        <div class="s-glow" style="background:rgba(139,92,246,.2)"></div>
-        <div class="s-icon" style="background:linear-gradient(135deg,#EDE9FE,#F0FFFE)">
-          <svg viewBox="0 0 24 24" stroke="#8B5CF6"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg>
+        <div class="s-glow" style="background:rgba(139,92,246,.22)"></div>
+        <span class="s-topbar" style="background:linear-gradient(90deg,#8B5CF6,#A78BFA)"></span>
+        <div class="s-card-body">
+          <div class="s-icon" style="background:linear-gradient(135deg,#EDE9FE 0%,#F5F0FF 100%);box-shadow:0 4px 18px rgba(139,92,246,.15)">
+            <svg viewBox="0 0 24 24" stroke="#8B5CF6"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg>
+          </div>
+          <h3>Desarrollo Web a Medida</h3>
+          <p>Desarrollamos plataformas robustas y escalables con las mejores tecnologías. Código limpio, rápido y seguro.</p>
+          <div class="s-tag" style="color:#8B5CF6">
+            <svg viewBox="0 0 24 24" stroke="#8B5CF6"><polyline points="9 18 15 12 9 6"/></svg>
+            React · Node · Performance
+          </div>
         </div>
-        <h3>Desarrollo Web</h3>
-        <p>Desarrollamos plataformas robustas y escalables con las mejores tecnologías. Código limpio, rápido y seguro.</p>
       </div>
 
+      <!-- E-commerce — línea azul -->
       <div class="s-card">
-        <div class="s-glow" style="background:rgba(59,130,246,.2)"></div>
-        <div class="s-icon" style="background:linear-gradient(135deg,#DBEAFE,#EFF6FF)">
-          <svg viewBox="0 0 24 24" stroke="#3B82F6"><path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 01-8 0"/></svg>
+        <div class="s-glow" style="background:rgba(59,130,246,.22)"></div>
+        <span class="s-topbar" style="background:linear-gradient(90deg,#3B82F6,#60A5FA)"></span>
+        <div class="s-card-body">
+          <div class="s-icon" style="background:linear-gradient(135deg,#DBEAFE 0%,#EFF6FF 100%);box-shadow:0 4px 18px rgba(59,130,246,.15)">
+            <svg viewBox="0 0 24 24" stroke="#3B82F6"><path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 01-8 0"/></svg>
+          </div>
+          <h3>E-commerce de Alto Rendimiento</h3>
+          <p>Tiendas online que venden. Integramos pasarelas de pago, gestión de inventario y experiencias de compra que convierten.</p>
+          <div class="s-tag" style="color:#3B82F6">
+            <svg viewBox="0 0 24 24" stroke="#3B82F6"><polyline points="9 18 15 12 9 6"/></svg>
+            Ventas · Pagos · Escala
+          </div>
         </div>
-        <h3>E-commerce</h3>
-        <p>Tiendas online que venden. Integramos pasarelas de pago, gestión de inventario y experiencias de compra que convierten.</p>
       </div>
 
     </div>
@@ -1534,15 +1602,19 @@ footer{
       <div class="c-items">
         <div class="c-item">
           <div class="c-ico"><svg viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg></div>
-          <div><span class="ci-lbl">Email</span><span class="ci-val">hola@webstudio.io</span></div>
+          <div><span class="ci-lbl">Email</span><span class="ci-val">novasystems32@gmail.com</span></div>
         </div>
         <div class="c-item">
           <div class="c-ico"><svg viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 9.81 19.79 19.79 0 01.06 1.2 2 2 0 012 .02h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.09 7.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg></div>
-          <div><span class="ci-lbl">WhatsApp</span><span class="ci-val">+54 9 11 0000-0000</span></div>
+          <div>
+            <span class="ci-lbl">WhatsApp</span>
+            <span class="ci-val">+54 3571 598388</span>
+            <span class="ci-val" style="margin-top:2px;display:block">+54 3571 315471</span>
+          </div>
         </div>
         <div class="c-item">
           <div class="c-ico"><svg viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg></div>
-          <div><span class="ci-lbl">Ubicación</span><span class="ci-val">Buenos Aires, Argentina — 100% remoto</span></div>
+          <div><span class="ci-lbl">Ubicación</span><span class="ci-val">Córdoba, Argentina — 100% remoto</span></div>
         </div>
       </div>
     </div>
