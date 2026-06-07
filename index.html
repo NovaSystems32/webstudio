@@ -160,34 +160,47 @@ img{max-width:100%;display:block}
 }
 .nav-inner{
   display:flex;align-items:center;
-  justify-content:space-between;height:88px;
+  justify-content:space-between;height:90px;
 }
-/* Logo tipográfico */
-.logo{display:flex;align-items:center;gap:10px;cursor:pointer;text-decoration:none}
-.logo-icon{
-  width:40px;height:40px;border-radius:10px;
-  background:var(--g-brand);
-  display:flex;align-items:center;justify-content:center;
+/* ── Logo ── */
+.logo{
+  display:flex;align-items:center;gap:12px;
+  cursor:pointer;text-decoration:none;
+}
+.logo-img{
+  height:62px;width:62px;
+  border-radius:50%;
+  object-fit:cover;
   flex-shrink:0;
-  box-shadow:0 4px 14px rgba(236,72,153,.35);
-  transition:box-shadow .25s,transform .25s;
+  transition:transform .3s,filter .3s,box-shadow .3s;
+  box-shadow:0 0 0 2px rgba(236,72,153,.2), 0 4px 20px rgba(236,72,153,.2);
+  animation:logoPulseNav 4s ease-in-out infinite;
 }
-.logo-icon svg{width:20px;height:20px;fill:none;stroke:#fff;stroke-width:2.5;stroke-linecap:round;stroke-linejoin:round}
-.logo:hover .logo-icon{transform:scale(1.07);box-shadow:0 6px 22px rgba(236,72,153,.45)}
-.logo-text{line-height:1}
-.logo-text .lt-top{
-  display:block;
-  font-size:.65rem;font-weight:700;letter-spacing:.18em;
-  text-transform:uppercase;color:var(--tx-3);
-  margin-bottom:1px;
+@keyframes logoPulseNav{
+  0%,100%{box-shadow:0 0 0 2px rgba(236,72,153,.2),0 4px 20px rgba(236,72,153,.15)}
+  50%{box-shadow:0 0 0 4px rgba(236,72,153,.15),0 4px 28px rgba(139,92,246,.25)}
 }
-.logo-text .lt-brand{
+.logo:hover .logo-img{
+  transform:scale(1.06);
+  filter:drop-shadow(0 6px 18px rgba(236,72,153,.4));
+  animation:none;
+  box-shadow:0 0 0 3px rgba(236,72,153,.35),0 8px 30px rgba(236,72,153,.3);
+}
+.logo-wordmark{line-height:1.15}
+.logo-wordmark .lw-name{
   display:block;
-  font-size:1.18rem;font-weight:900;letter-spacing:-.02em;
+  font-size:1.22rem;font-weight:900;
+  letter-spacing:-.02em;
   background:var(--g-brand);
   -webkit-background-clip:text;-webkit-text-fill-color:transparent;
   background-clip:text;
   line-height:1;
+}
+.logo-wordmark .lw-tag{
+  display:block;
+  font-size:.62rem;font-weight:600;
+  letter-spacing:.16em;text-transform:uppercase;
+  color:var(--tx-3);margin-top:3px;
 }
 
 .nav-links{display:flex;gap:32px;list-style:none}
@@ -1040,12 +1053,10 @@ footer{
 <nav class="navbar" id="navbar">
   <div class="container nav-inner">
     <a href="#" class="logo">
-      <div class="logo-icon">
-        <svg viewBox="0 0 24 24"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg>
-      </div>
-      <div class="logo-text">
-        <span class="lt-top">Diseño · Desarrollo</span>
-        <span class="lt-brand">Web Studio</span>
+      <img src="logowebstudio.jpeg" alt="Web Studio" class="logo-img"/>
+      <div class="logo-wordmark">
+        <span class="lw-name">Web Studio</span>
+        <span class="lw-tag">Diseño · Desarrollo · Resultados</span>
       </div>
     </a>
     <ul class="nav-links">
@@ -1575,12 +1586,10 @@ footer{
     <div class="footer-top">
       <div class="f-brand">
         <a href="#" class="f-logo">
-          <div class="logo-icon">
-            <svg viewBox="0 0 24 24"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg>
-          </div>
-          <div class="logo-text">
-            <span class="lt-top">Diseño · Desarrollo</span>
-            <span class="lt-brand">Web Studio</span>
+          <img src="logowebstudio.jpeg" alt="Web Studio" class="logo-img" style="height:54px;width:54px;animation:none;box-shadow:0 0 0 2px rgba(236,72,153,.2),0 4px 16px rgba(236,72,153,.15)"/>
+          <div class="logo-wordmark">
+            <span class="lw-name">Web Studio</span>
+            <span class="lw-tag" style="color:rgba(255,255,255,.4)">Diseño · Desarrollo · Resultados</span>
           </div>
         </a>
         <div class="f-tagline">Diseño · Desarrollo · Resultados</div>
