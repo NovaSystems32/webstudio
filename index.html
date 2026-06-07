@@ -350,6 +350,22 @@ img{max-width:100%;display:block}
   display:flex;gap:12px;flex-wrap:wrap;
   animation:fadeInUp .7s .3s ease both;
 }
+.hero-trust-pills{
+  display:flex;gap:8px;flex-wrap:wrap;
+  margin-top:18px;
+  animation:fadeInUp .7s .4s ease both;
+}
+.ht-pill{
+  display:inline-flex;align-items:center;gap:6px;
+  padding:6px 14px;
+  background:var(--bg-pearl);
+  border:1px solid var(--bd);
+  border-radius:100px;
+  font-size:.76rem;font-weight:600;color:var(--tx-3);
+  box-shadow:var(--sh-xs);
+  transition:border-color .2s,color .2s,box-shadow .2s;
+}
+.ht-pill:hover{border-color:var(--blue);color:var(--tx);box-shadow:var(--sh-blue)}
 
 /* ── Stats inline ── */
 .hero-proof{
@@ -1314,6 +1330,20 @@ footer{
           Ver nuestros trabajos
         </a>
         <a href="#contacto" class="btn btn-outline">Hablemos de tu proyecto →</a>
+      </div>
+      <div class="hero-trust-pills">
+        <div class="ht-pill">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#EC4899" stroke-width="2.5"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+          100% personalizado
+        </div>
+        <div class="ht-pill">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#8B5CF6" stroke-width="2.5"><polyline points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
+          Tecnología moderna
+        </div>
+        <div class="ht-pill">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#3B82F6" stroke-width="2.5"><path d="M18 8h1a4 4 0 010 8h-1"/><path d="M2 8h16v9a4 4 0 01-4 4H6a4 4 0 01-4-4V8z"/><line x1="6" y1="1" x2="6" y2="4"/><line x1="10" y1="1" x2="10" y2="4"/><line x1="14" y1="1" x2="14" y2="4"/></svg>
+          Soporte continuo
+        </div>
       </div>
       <div class="hero-proof">
         <div class="proof-stat"><div class="proof-num">+80</div><div class="proof-lbl">Proyectos lanzados</div></div>
