@@ -375,13 +375,18 @@ img{max-width:100%;display:block}
   animation:fadeInUp .7s .4s ease both;
 }
 .proof-stat{text-align:left}
+.proof-ico{
+  width:36px;height:36px;border-radius:10px;
+  display:flex;align-items:center;justify-content:center;
+  margin-bottom:10px;
+}
 .proof-num{
-  font-size:2rem;font-weight:900;line-height:1;
+  font-size:1.1rem;font-weight:800;line-height:1;
   background:var(--g-brand);
   -webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;
 }
 .proof-lbl{font-size:.78rem;color:var(--tx-3);font-weight:500;margin-top:3px}
-.proof-div{width:1px;height:40px;background:var(--bd);flex-shrink:0}
+.proof-div{width:1px;height:56px;background:var(--bd);flex-shrink:0;align-self:center}
 
 /* ── Mockup visual derecho ── */
 .hero-visual{
@@ -1331,26 +1336,30 @@ footer{
         </a>
         <a href="#contacto" class="btn btn-outline">Hablemos de tu proyecto →</a>
       </div>
-      <div class="hero-trust-pills">
-        <div class="ht-pill">
-          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#EC4899" stroke-width="2.5"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
-          100% personalizado
-        </div>
-        <div class="ht-pill">
-          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#8B5CF6" stroke-width="2.5"><polyline points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
-          Tecnología moderna
-        </div>
-        <div class="ht-pill">
-          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#3B82F6" stroke-width="2.5"><path d="M18 8h1a4 4 0 010 8h-1"/><path d="M2 8h16v9a4 4 0 01-4 4H6a4 4 0 01-4-4V8z"/><line x1="6" y1="1" x2="6" y2="4"/><line x1="10" y1="1" x2="10" y2="4"/><line x1="14" y1="1" x2="14" y2="4"/></svg>
-          Soporte continuo
-        </div>
-      </div>
       <div class="hero-proof">
-        <div class="proof-stat"><div class="proof-num">+80</div><div class="proof-lbl">Proyectos lanzados</div></div>
+        <div class="proof-stat">
+          <div class="proof-ico" style="background:linear-gradient(135deg,#FCE7F3,#FDF4FF)">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#EC4899" stroke-width="2.5"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+          </div>
+          <div class="proof-num">100%</div>
+          <div class="proof-lbl">Personalizado</div>
+        </div>
         <div class="proof-div"></div>
-        <div class="proof-stat"><div class="proof-num">+50</div><div class="proof-lbl">Clientes felices</div></div>
+        <div class="proof-stat">
+          <div class="proof-ico" style="background:linear-gradient(135deg,#EDE9FE,#F5F0FF)">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#8B5CF6" stroke-width="2.5"><polyline points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
+          </div>
+          <div class="proof-num">Tecnología</div>
+          <div class="proof-lbl">Moderna</div>
+        </div>
         <div class="proof-div"></div>
-        <div class="proof-stat"><div class="proof-num">5+</div><div class="proof-lbl">Años de experiencia</div></div>
+        <div class="proof-stat">
+          <div class="proof-ico" style="background:linear-gradient(135deg,#DBEAFE,#EFF6FF)">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#3B82F6" stroke-width="2.5"><path d="M18 8h1a4 4 0 010 8h-1"/><path d="M2 8h16v9a4 4 0 01-4 4H6a4 4 0 01-4-4V8z"/><line x1="6" y1="1" x2="6" y2="4"/><line x1="10" y1="1" x2="10" y2="4"/><line x1="14" y1="1" x2="14" y2="4"/></svg>
+          </div>
+          <div class="proof-num">Soporte</div>
+          <div class="proof-lbl">Continuo</div>
+        </div>
       </div>
     </div>
 
