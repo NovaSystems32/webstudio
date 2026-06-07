@@ -160,10 +160,10 @@ img{max-width:100%;display:block}
 }
 .nav-inner{
   display:flex;align-items:center;
-  justify-content:space-between;height:76px;
+  justify-content:space-between;height:88px;
 }
-.logo img{height:56px;width:auto;object-fit:contain;transition:transform .2s}
-.logo img:hover{transform:scale(1.04)}
+.logo img{height:72px;width:auto;object-fit:contain;transition:transform .25s,filter .25s}
+.logo img:hover{transform:scale(1.05);filter:drop-shadow(0 4px 16px rgba(236,72,153,.25))}
 
 .nav-links{display:flex;gap:32px;list-style:none}
 .nav-links a{
@@ -211,70 +211,100 @@ img{max-width:100%;display:block}
 .mobile-menu a:last-child{border:none}
 
 /* ═══════════════════════════════════════════
-   HERO  — blanco, glow brand suave
+   HERO — identidad de marca + impacto
 ═══════════════════════════════════════════ */
 .hero{
   min-height:100vh;
   display:flex;align-items:center;
-  padding:130px 0 96px;
+  padding:140px 0 100px;
   position:relative;overflow:hidden;
   background:var(--bg-white);
 }
 
-/* Background blobs */
-.h-blob{
-  position:absolute;border-radius:50%;
-  pointer-events:none;filter:blur(100px);
+/* ── Blobs de color de marca ── */
+.h-blob{position:absolute;border-radius:50%;pointer-events:none;filter:blur(90px)}
+.h-blob-1{width:650px;height:650px;background:rgba(236,72,153,.09);top:-160px;right:-120px;animation:bfloat 12s ease-in-out infinite}
+.h-blob-2{width:550px;height:550px;background:rgba(59,130,246,.08);bottom:-130px;left:-100px;animation:bfloat 14s ease-in-out infinite;animation-delay:3s}
+.h-blob-3{width:380px;height:380px;background:rgba(139,92,246,.06);top:30%;left:35%;animation:bfloat 10s ease-in-out infinite;animation-delay:6s}
+@keyframes bfloat{
+  0%,100%{transform:translate(0,0) scale(1)}
+  33%{transform:translate(20px,-15px) scale(1.04)}
+  66%{transform:translate(-10px,20px) scale(.97)}
 }
-.h-blob-1{width:700px;height:700px;background:rgba(236,72,153,.07);top:-180px;right:-160px}
-.h-blob-2{width:600px;height:600px;background:rgba(59,130,246,.07);bottom:-160px;left:-120px}
-.h-blob-3{width:400px;height:400px;background:rgba(139,92,246,.05);top:35%;left:38%}
 
-/* Grid — barely visible */
+/* ── Grid sutil ── */
 .hero::before{
   content:'';position:absolute;inset:0;
   background-image:
-    linear-gradient(rgba(59,130,246,.045) 1px,transparent 1px),
-    linear-gradient(90deg,rgba(59,130,246,.045) 1px,transparent 1px);
+    linear-gradient(rgba(59,130,246,.04) 1px,transparent 1px),
+    linear-gradient(90deg,rgba(59,130,246,.04) 1px,transparent 1px);
   background-size:56px 56px;
-  mask-image:radial-gradient(ellipse 75% 75% at 50% 50%,black 20%,transparent 100%);
-  -webkit-mask-image:radial-gradient(ellipse 75% 75% at 50% 50%,black 20%,transparent 100%);
+  mask-image:radial-gradient(ellipse 70% 70% at 50% 50%,black 10%,transparent 100%);
+  -webkit-mask-image:radial-gradient(ellipse 70% 70% at 50% 50%,black 10%,transparent 100%);
   pointer-events:none;
+}
+
+/* ── SVG decorativo — inspirado en el logo ── */
+.hero-deco{
+  position:absolute;inset:0;pointer-events:none;overflow:hidden;
 }
 
 .hero-inner{
   display:grid;grid-template-columns:1fr 1fr;
-  gap:72px;align-items:center;position:relative;
+  gap:72px;align-items:center;position:relative;z-index:2;
 }
 
-/* Left */
-.hero-brand-tag{
+/* ── Pill de disponibilidad ── */
+.hero-pill{
   display:inline-flex;align-items:center;gap:10px;
-  background:var(--bg-pearl);border:1px solid var(--bd);
-  border-radius:100px;padding:8px 18px 8px 8px;
+  background:rgba(255,255,255,.85);
+  border:1px solid var(--bd);
+  border-radius:100px;
+  padding:8px 20px 8px 8px;
   font-size:.78rem;font-weight:600;color:var(--tx-3);
-  margin-bottom:28px;box-shadow:var(--sh-xs);
+  margin-bottom:28px;
+  box-shadow:var(--sh-sm);
+  backdrop-filter:blur(8px);
+  animation:fadeInDown .6s ease both;
 }
-.hero-brand-tag img{height:26px;width:auto;border-radius:50%;object-fit:cover;box-shadow:var(--sh-xs)}
-.hero-brand-tag .dot{width:8px;height:8px;border-radius:50%;background:#22c55e;animation:pulse 2.2s infinite}
+.hero-pill img{
+  height:30px;width:30px;border-radius:50%;
+  object-fit:cover;
+  box-shadow:0 2px 8px rgba(236,72,153,.25);
+  border:2px solid rgba(236,72,153,.25);
+}
+.hero-pill .dot{
+  width:8px;height:8px;border-radius:50%;
+  background:#22c55e;flex-shrink:0;
+  animation:pulse 2.2s infinite;
+}
 @keyframes pulse{0%,100%{box-shadow:0 0 0 0 rgba(34,197,94,.5)}50%{box-shadow:0 0 0 5px rgba(34,197,94,0)}}
+@keyframes fadeInDown{from{opacity:0;transform:translateY(-12px)}to{opacity:1;transform:translateY(0)}}
 
+/* ── Título ── */
 .hero h1{
-  font-size:clamp(2.6rem,5.5vw,4.2rem);
-  font-weight:900;line-height:1.08;
+  font-size:clamp(2.7rem,5.5vw,4.4rem);
+  font-weight:900;line-height:1.07;
   color:var(--tx);margin-bottom:22px;
-  letter-spacing:-.035em;
+  letter-spacing:-.036em;
+  animation:fadeInUp .7s .1s ease both;
 }
 .hero-sub{
   font-size:1.1rem;color:var(--tx-3);
   max-width:440px;line-height:1.8;margin-bottom:40px;
+  animation:fadeInUp .7s .2s ease both;
 }
-.hero-btns{display:flex;gap:12px;flex-wrap:wrap}
+.hero-btns{
+  display:flex;gap:12px;flex-wrap:wrap;
+  animation:fadeInUp .7s .3s ease both;
+}
 
+/* ── Stats inline ── */
 .hero-proof{
   display:flex;align-items:center;gap:20px;
   margin-top:52px;padding-top:36px;
   border-top:1px solid var(--bd);flex-wrap:wrap;
+  animation:fadeInUp .7s .4s ease both;
 }
 .proof-stat{text-align:left}
 .proof-num{
@@ -285,73 +315,185 @@ img{max-width:100%;display:block}
 .proof-lbl{font-size:.78rem;color:var(--tx-3);font-weight:500;margin-top:3px}
 .proof-div{width:1px;height:40px;background:var(--bd);flex-shrink:0}
 
-/* Right — dashboard mockup */
-.hero-visual{position:relative;display:flex;justify-content:center;align-items:center}
+/* ── Mockup visual derecho ── */
+.hero-visual{
+  position:relative;display:flex;
+  justify-content:center;align-items:center;
+  animation:fadeInRight .8s .15s ease both;
+}
+@keyframes fadeInRight{from{opacity:0;transform:translateX(28px)}to{opacity:1;transform:translateX(0)}}
 
+/* Card principal */
 .hero-card{
   background:var(--bg-white);
   border:1px solid var(--bd);
-  border-radius:var(--rx);
-  padding:28px;
+  border-radius:24px;
+  padding:0;
   box-shadow:var(--sh-xl);
-  width:100%;max-width:420px;
+  width:100%;max-width:430px;
   position:relative;
+  overflow:hidden;
 }
-/* Gradient border-top */
+/* Borde gradiente top */
 .hero-card::before{
-  content:'';position:absolute;top:0;left:28px;right:28px;
-  height:2px;background:var(--g-brand);
-  border-radius:0 0 4px 4px;
+  content:'';position:absolute;top:0;left:0;right:0;
+  height:3px;background:var(--g-brand);z-index:1;
 }
-/* Glow under card */
+/* Glow ambiental */
 .hero-card::after{
   content:'';position:absolute;
-  inset:-20px;z-index:-1;
-  background:var(--g-soft);
-  border-radius:var(--rx);
-  filter:blur(30px);
+  inset:-32px;z-index:-1;
+  background:radial-gradient(ellipse 80% 60% at 50% 0%,rgba(236,72,153,.1) 0%,transparent 70%),
+             radial-gradient(ellipse 60% 60% at 80% 100%,rgba(59,130,246,.08) 0%,transparent 70%);
+  filter:blur(20px);
 }
 
-.dots-row{display:flex;gap:6px;margin-bottom:22px}
-.dots-row span{width:10px;height:10px;border-radius:50%}
-.dots-row span:nth-child(1){background:#ff5f57}
-.dots-row span:nth-child(2){background:#febc2e}
-.dots-row span:nth-child(3){background:#28c840}
+/* Browser chrome */
+.card-chrome{
+  display:flex;align-items:center;gap:8px;
+  padding:14px 18px 12px;
+  border-bottom:1px solid var(--bd-s);
+  background:var(--bg-pearl);
+}
+.chrome-dots{display:flex;gap:5px}
+.chrome-dots span{width:10px;height:10px;border-radius:50%}
+.chrome-dots span:nth-child(1){background:#ff5f57}
+.chrome-dots span:nth-child(2){background:#febc2e}
+.chrome-dots span:nth-child(3){background:#28c840}
+.chrome-bar{
+  flex:1;background:var(--bg-white);
+  border:1px solid var(--bd);border-radius:6px;
+  padding:5px 12px;
+  font-size:.7rem;color:var(--tx-3);
+  display:flex;align-items:center;gap:6px;
+}
+.chrome-bar span{
+  display:inline-block;width:8px;height:8px;border-radius:50%;
+  background:var(--g-brand);flex-shrink:0;
+}
 
-.h-bar{height:6px;border-radius:3px;background:var(--bg-pearl);margin-bottom:10px;overflow:hidden}
-.h-bar-fill{
+/* Card body */
+.card-body{padding:20px 20px 22px}
+
+/* Metric row */
+.metric-row{
+  display:grid;grid-template-columns:repeat(3,1fr);gap:10px;
+  margin-bottom:18px;
+}
+.metric{
+  background:var(--bg-pearl);border:1px solid var(--bd);
+  border-radius:12px;padding:14px 12px;
+  transition:border-color .2s,box-shadow .2s,transform .2s;
+}
+.metric:hover{border-color:var(--blue);box-shadow:var(--sh-blue);transform:translateY(-2px)}
+.metric .m-l{font-size:.65rem;color:var(--tx-3);font-weight:500;margin-bottom:6px}
+.metric .m-v{
+  font-size:1.2rem;font-weight:800;
+  background:var(--g-brand);
+  -webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;
+}
+.metric .m-d{font-size:.65rem;color:#22c55e;font-weight:700;margin-top:2px}
+
+/* Progress bars */
+.bar-section{margin-bottom:16px}
+.bar-label{
+  display:flex;justify-content:space-between;align-items:center;
+  font-size:.7rem;color:var(--tx-3);font-weight:600;margin-bottom:6px;
+}
+.bar-label span:last-child{
+  background:var(--g-brand);
+  -webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;
+  font-weight:800;
+}
+.bar-track{height:6px;border-radius:3px;background:var(--bg-pearl);overflow:hidden}
+.bar-fill{
   height:100%;border-radius:3px;background:var(--g-brand);
   animation:bload 2.4s ease-out forwards;width:0;
 }
 @keyframes bload{to{width:var(--w)}}
 
-.h-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:20px}
-.h-mini{
-  background:var(--bg-pearl);border:1px solid var(--bd);
-  border-radius:12px;padding:14px;
-  transition:border-color .2s,box-shadow .2s;
+/* Rocket launch mini visual */
+.launch-row{
+  display:flex;align-items:center;justify-content:space-between;
+  padding:12px 14px;
+  background:linear-gradient(135deg,rgba(236,72,153,.05),rgba(59,130,246,.05));
+  border:1px solid rgba(236,72,153,.12);
+  border-radius:12px;
+  margin-top:4px;
 }
-.h-mini:hover{border-color:var(--blue);box-shadow:var(--sh-blue)}
-.h-mini .ml{font-size:.68rem;color:var(--tx-3);margin-bottom:5px;font-weight:500}
-.h-mini .mv{
-  font-size:1.15rem;font-weight:800;
+.launch-left{display:flex;align-items:center;gap:10px}
+.launch-ico{
+  width:34px;height:34px;border-radius:9px;
   background:var(--g-brand);
-  -webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;
+  display:flex;align-items:center;justify-content:center;
+  flex-shrink:0;
+}
+.launch-ico svg{width:16px;height:16px;fill:none;stroke:#fff;stroke-width:2.5}
+.launch-txt .lt{font-size:.72rem;font-weight:700;color:var(--tx)}
+.launch-txt .ls{font-size:.65rem;color:var(--tx-3)}
+.launch-status{
+  font-size:.68rem;font-weight:700;color:#22c55e;
+  background:rgba(34,197,94,.1);border-radius:100px;
+  padding:4px 10px;
 }
 
 /* Floating badges */
 .fbadge{
   position:absolute;
-  background:var(--bg-white);border:1px solid var(--bd);
+  background:rgba(255,255,255,.92);
+  border:1px solid var(--bd);
   border-radius:12px;padding:10px 16px;
   font-size:.78rem;font-weight:700;
   display:flex;align-items:center;gap:8px;
   box-shadow:var(--sh-md);white-space:nowrap;
+  backdrop-filter:blur(8px);
 }
-.fbadge svg{flex-shrink:0}
 .fbadge.t{top:-22px;right:-22px;color:var(--pink);animation:fy 3.2s ease-in-out infinite}
 .fbadge.b{bottom:-22px;left:-22px;color:var(--blue);animation:fy 3.8s ease-in-out infinite;animation-delay:1.2s}
 @keyframes fy{0%,100%{transform:translateY(0)}50%{transform:translateY(-9px)}}
+@keyframes fadeInUp{from{opacity:0;transform:translateY(22px)}to{opacity:1;transform:translateY(0)}}
+
+/* ── Métricas / Stats band ── */
+.stats-band{
+  background:var(--bg-white);
+  border-top:1px solid var(--bd);
+  border-bottom:1px solid var(--bd);
+  padding:52px 0;
+  position:relative;overflow:hidden;
+}
+.stats-band::before{
+  content:'';position:absolute;inset:0;
+  background:linear-gradient(90deg,rgba(236,72,153,.04) 0%,rgba(139,92,246,.03) 50%,rgba(59,130,246,.04) 100%);
+  pointer-events:none;
+}
+.stats-grid{
+  display:grid;
+  grid-template-columns:repeat(4,1fr);
+  gap:0;
+  position:relative;z-index:1;
+}
+.stat-item{
+  text-align:center;
+  padding:24px 20px;
+  border-right:1px solid var(--bd);
+  transition:background .25s;
+}
+.stat-item:last-child{border-right:none}
+.stat-item:hover{background:rgba(236,72,153,.03)}
+.stat-big{
+  font-size:3rem;font-weight:900;
+  background:var(--g-brand);
+  -webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;
+  line-height:1;margin-bottom:8px;
+  letter-spacing:-.03em;
+}
+.stat-desc{
+  font-size:.82rem;font-weight:600;color:var(--tx-3);
+  line-height:1.4;
+}
+.stat-sub{
+  font-size:.72rem;color:var(--tx-3);opacity:.7;margin-top:4px;
+}
 
 /* ═══════════════════════════════════════════
    TRUST BAR — perla
@@ -824,6 +966,7 @@ footer{
   .hamburger{display:flex}
   .hero-inner{grid-template-columns:1fr}
   .hero-visual{display:none}
+  .hero-deco{display:none}
   .services-grid{grid-template-columns:1fr}
   .about-inner{grid-template-columns:1fr;gap:48px}
   .a-chip{display:none}
@@ -833,6 +976,10 @@ footer{
   .form-row{grid-template-columns:1fr}
   .hero-proof{flex-wrap:wrap;gap:20px}
   .section{padding:80px 0}
+  .stats-grid{grid-template-columns:repeat(2,1fr)}
+  .stat-item{border-right:none;border-bottom:1px solid var(--bd)}
+  .stat-item:nth-child(odd){border-right:1px solid var(--bd)}
+  .stat-item:nth-last-child(-n+2){border-bottom:none}
 }
 @media(max-width:480px){
   .process-grid{grid-template-columns:1fr}
@@ -879,59 +1026,244 @@ footer{
   <div class="h-blob h-blob-1"></div>
   <div class="h-blob h-blob-2"></div>
   <div class="h-blob h-blob-3"></div>
+
+  <!-- SVG decorativo inspirado en el logo: órbitas, trayectoria del cohete, estrellas -->
+  <div class="hero-deco" aria-hidden="true">
+    <svg width="100%" height="100%" viewBox="0 0 1200 800" preserveAspectRatio="xMidYMid slice" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <defs>
+        <linearGradient id="gc1" x1="0%" y1="0%" x2="100%" y2="100%">
+          <stop offset="0%" stop-color="#EC4899" stop-opacity=".5"/>
+          <stop offset="100%" stop-color="#3B82F6" stop-opacity=".5"/>
+        </linearGradient>
+        <linearGradient id="gc2" x1="0%" y1="100%" x2="100%" y2="0%">
+          <stop offset="0%" stop-color="#3B82F6" stop-opacity=".4"/>
+          <stop offset="100%" stop-color="#8B5CF6" stop-opacity=".4"/>
+        </linearGradient>
+        <linearGradient id="gtrail" x1="0%" y1="0%" x2="100%" y2="100%">
+          <stop offset="0%" stop-color="#EC4899" stop-opacity="0"/>
+          <stop offset="100%" stop-color="#EC4899" stop-opacity=".6"/>
+        </linearGradient>
+      </defs>
+
+      <!-- Órbita circular grande — inspirada en el círculo del logo -->
+      <ellipse cx="820" cy="380" rx="340" ry="340"
+               stroke="url(#gc1)" stroke-width="1" stroke-dasharray="4 10"
+               opacity=".18">
+        <animateTransform attributeName="transform" type="rotate"
+          from="0 820 380" to="360 820 380" dur="60s" repeatCount="indefinite"/>
+      </ellipse>
+
+      <!-- Órbita mediana inclinada -->
+      <ellipse cx="820" cy="380" rx="220" ry="100"
+               stroke="url(#gc2)" stroke-width="1" stroke-dasharray="3 8"
+               opacity=".2" transform="rotate(-30 820 380)">
+        <animateTransform attributeName="transform" type="rotate"
+          from="-30 820 380" to="330 820 380" dur="35s" repeatCount="indefinite"/>
+      </ellipse>
+
+      <!-- Trayectoria del cohete — curva diagonal tipo launch -->
+      <path d="M 620 600 Q 780 400 960 150"
+            stroke="url(#gtrail)" stroke-width="1.5"
+            stroke-dasharray="6 6" opacity=".35">
+        <animate attributeName="stroke-dashoffset" from="100" to="0" dur="3s" repeatCount="indefinite"/>
+      </path>
+
+      <!-- Cohete simplificado moviéndose por la trayectoria -->
+      <g opacity=".5">
+        <animateMotion dur="8s" repeatCount="indefinite" rotate="auto">
+          <mpath href="#rocketPath"/>
+        </animateMotion>
+        <path d="M0 -8 L4 4 L0 2 L-4 4 Z" fill="#EC4899"/>
+        <circle cx="0" cy="-4" r="3" fill="#8B5CF6"/>
+      </g>
+      <path id="rocketPath" d="M 620 600 Q 780 400 960 150" fill="none"/>
+
+      <!-- Estrellas / destellos — inspirados en las chispas del logo -->
+      <!-- Destello 1 -->
+      <g transform="translate(680, 200)" opacity=".4">
+        <path d="M0 -8 L1.5 0 L0 8 L-1.5 0 Z" fill="#EC4899">
+          <animate attributeName="opacity" values=".4;.9;.4" dur="2.5s" repeatCount="indefinite"/>
+          <animateTransform attributeName="transform" type="rotate" from="0" to="360" dur="6s" repeatCount="indefinite"/>
+        </path>
+        <path d="M-8 0 L0 1.5 L8 0 L0 -1.5 Z" fill="#EC4899">
+          <animate attributeName="opacity" values=".4;.9;.4" dur="2.5s" repeatCount="indefinite"/>
+          <animateTransform attributeName="transform" type="rotate" from="0" to="360" dur="6s" repeatCount="indefinite"/>
+        </path>
+      </g>
+      <!-- Destello 2 -->
+      <g transform="translate(980, 300)" opacity=".3">
+        <path d="M0 -6 L1 0 L0 6 L-1 0 Z" fill="#3B82F6">
+          <animate attributeName="opacity" values=".3;.8;.3" dur="3s" repeatCount="indefinite" begin="1s"/>
+          <animateTransform attributeName="transform" type="rotate" from="0" to="360" dur="8s" repeatCount="indefinite"/>
+        </path>
+        <path d="M-6 0 L0 1 L6 0 L0 -1 Z" fill="#3B82F6">
+          <animate attributeName="opacity" values=".3;.8;.3" dur="3s" repeatCount="indefinite" begin="1s"/>
+          <animateTransform attributeName="transform" type="rotate" from="0" to="360" dur="8s" repeatCount="indefinite"/>
+        </path>
+      </g>
+      <!-- Destello 3 -->
+      <g transform="translate(740, 140)" opacity=".25">
+        <path d="M0 -5 L.8 0 L0 5 L-.8 0 Z" fill="#8B5CF6">
+          <animate attributeName="opacity" values=".25;.7;.25" dur="4s" repeatCount="indefinite" begin="2s"/>
+        </path>
+        <path d="M-5 0 L0 .8 L5 0 L0 -.8 Z" fill="#8B5CF6">
+          <animate attributeName="opacity" values=".25;.7;.25" dur="4s" repeatCount="indefinite" begin="2s"/>
+        </path>
+      </g>
+
+      <!-- Puntos flotantes pequeños -->
+      <circle cx="640" cy="320" r="3" fill="#EC4899" opacity=".2">
+        <animate attributeName="cy" values="320;310;320" dur="4s" repeatCount="indefinite"/>
+        <animate attributeName="opacity" values=".2;.5;.2" dur="4s" repeatCount="indefinite"/>
+      </circle>
+      <circle cx="920" cy="450" r="2.5" fill="#3B82F6" opacity=".18">
+        <animate attributeName="cy" values="450;438;450" dur="5s" repeatCount="indefinite" begin="1.5s"/>
+        <animate attributeName="opacity" values=".18;.45;.18" dur="5s" repeatCount="indefinite" begin="1.5s"/>
+      </circle>
+      <circle cx="1050" cy="250" r="2" fill="#8B5CF6" opacity=".15">
+        <animate attributeName="cy" values="250;240;250" dur="3.5s" repeatCount="indefinite" begin="1s"/>
+      </circle>
+
+      <!-- Arco pequeño inferior derecha -->
+      <path d="M 900 650 Q 1050 550 1150 400"
+            stroke="url(#gc1)" stroke-width="1"
+            stroke-dasharray="3 8" opacity=".12"/>
+    </svg>
+  </div>
+
   <div class="container hero-inner">
+    <!-- IZQUIERDA -->
     <div>
-      <div class="hero-brand-tag">
+      <div class="hero-pill">
         <img src="logowebstudio.jpeg" alt="WS"/>
         <span class="dot"></span>
         Disponibles para nuevos proyectos
       </div>
-      <h1>Creamos <span class="grad-text">experiencias digitales</span> que impulsan tu negocio</h1>
-      <p class="hero-sub">Diseño web, desarrollo a medida y e-commerce. Transformamos tus ideas en soluciones que generan resultados reales.</p>
+      <h1>Diseñamos y desarrollamos <span class="grad-text">webs que convierten</span></h1>
+      <p class="hero-sub">Somos el estudio que lleva tu negocio al siguiente nivel digital. Diseño estratégico, desarrollo a medida y e-commerce de alto impacto.</p>
       <div class="hero-btns">
         <a href="#portfolio" class="btn btn-primary">
           <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
-          Ver trabajos
+          Ver nuestros trabajos
         </a>
-        <a href="#contacto" class="btn btn-outline">Hablemos →</a>
+        <a href="#contacto" class="btn btn-outline">Hablemos de tu proyecto →</a>
       </div>
       <div class="hero-proof">
-        <div class="proof-stat"><div class="proof-num">+80</div><div class="proof-lbl">Proyectos entregados</div></div>
+        <div class="proof-stat"><div class="proof-num">+80</div><div class="proof-lbl">Proyectos lanzados</div></div>
         <div class="proof-div"></div>
-        <div class="proof-stat"><div class="proof-num">+50</div><div class="proof-lbl">Clientes satisfechos</div></div>
+        <div class="proof-stat"><div class="proof-num">+50</div><div class="proof-lbl">Clientes felices</div></div>
         <div class="proof-div"></div>
         <div class="proof-stat"><div class="proof-num">5+</div><div class="proof-lbl">Años de experiencia</div></div>
       </div>
     </div>
+
+    <!-- DERECHA — mockup premium -->
     <div class="hero-visual">
       <div class="hero-card">
-        <div class="dots-row"><span></span><span></span><span></span></div>
-        <div class="h-bar"><div class="h-bar-fill" style="--w:85%"></div></div>
-        <div class="h-bar"><div class="h-bar-fill" style="--w:68%;animation-delay:.35s"></div></div>
-        <div class="h-bar"><div class="h-bar-fill" style="--w:93%;animation-delay:.6s"></div></div>
-        <div class="h-grid">
-          <div class="h-mini"><div class="ml">Conversión</div><div class="mv">+34%</div></div>
-          <div class="h-mini"><div class="ml">Velocidad</div><div class="mv">98/100</div></div>
-          <div class="h-mini"><div class="ml">Sesiones</div><div class="mv">12.4k</div></div>
-          <div class="h-mini"><div class="ml">Uptime</div><div class="mv">99.9%</div></div>
+        <!-- Chrome del browser -->
+        <div class="card-chrome">
+          <div class="chrome-dots">
+            <span></span><span></span><span></span>
+          </div>
+          <div class="chrome-bar">
+            <span></span>
+            webstudio.io/dashboard
+          </div>
+        </div>
+        <!-- Cuerpo del card -->
+        <div class="card-body">
+          <!-- Métricas -->
+          <div class="metric-row">
+            <div class="metric">
+              <div class="m-l">Conversión</div>
+              <div class="m-v">+34%</div>
+              <div class="m-d">↑ vs mes anterior</div>
+            </div>
+            <div class="metric">
+              <div class="m-l">Velocidad</div>
+              <div class="m-v">98/100</div>
+              <div class="m-d">Performance</div>
+            </div>
+            <div class="metric">
+              <div class="m-l">Uptime</div>
+              <div class="m-v">99.9%</div>
+              <div class="m-d">Todo el año</div>
+            </div>
+          </div>
+          <!-- Barras de progreso -->
+          <div class="bar-section">
+            <div class="bar-label"><span>Tráfico orgánico</span><span>85%</span></div>
+            <div class="bar-track"><div class="bar-fill" style="--w:85%"></div></div>
+          </div>
+          <div class="bar-section">
+            <div class="bar-label"><span>Retención de usuarios</span><span>72%</span></div>
+            <div class="bar-track"><div class="bar-fill" style="--w:72%;animation-delay:.3s"></div></div>
+          </div>
+          <div class="bar-section">
+            <div class="bar-label"><span>Satisfacción del cliente</span><span>98%</span></div>
+            <div class="bar-track"><div class="bar-fill" style="--w:98%;animation-delay:.55s"></div></div>
+          </div>
+          <!-- Rocket launch row -->
+          <div class="launch-row">
+            <div class="launch-left">
+              <div class="launch-ico">
+                <svg viewBox="0 0 24 24"><path d="M12 2C6.5 2 2 6.5 2 12s4.5 10 10 10 10-4.5 10-10S17.5 2 12 2zm0 3c1.7 0 3 1.3 3 3S13.7 11 12 11 9 9.7 9 8s1.3-3 3-3zm0 14.2c-2.5 0-4.7-1.3-6-3.2.1-2 4-3 6-3s5.9 1 6 3c-1.3 1.9-3.5 3.2-6 3.2z"/></svg>
+              </div>
+              <div class="launch-txt">
+                <div class="lt">Nuevo proyecto lanzado 🚀</div>
+                <div class="ls">casaspezia.site — hace 2 días</div>
+              </div>
+            </div>
+            <div class="launch-status">Live ●</div>
+          </div>
         </div>
       </div>
+
+      <!-- Badges flotantes -->
       <div class="fbadge t">
-        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="23 6 13.5 15.5 8.5 10.5 1 18"/><polyline points="17 6 23 6 23 12"/></svg>
-        +24% conversiones
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#EC4899" stroke-width="2.5"><polyline points="23 6 13.5 15.5 8.5 10.5 1 18"/><polyline points="17 6 23 6 23 12"/></svg>
+        +34% en conversiones
       </div>
       <div class="fbadge b">
-        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M22 11.08V12a10 10 0 11-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
-        Entregado en tiempo
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#3B82F6" stroke-width="2.5"><path d="M22 11.08V12a10 10 0 11-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+        Proyecto entregado ✓
       </div>
     </div>
   </div>
 </section>
 
+<!-- ══════════════ STATS BAND ══════════════ -->
+<div class="stats-band">
+  <div class="container">
+    <div class="stats-grid">
+      <div class="stat-item">
+        <div class="stat-big">+80</div>
+        <div class="stat-desc">Proyectos lanzados</div>
+        <div class="stat-sub">Desde 2019</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-big">+50</div>
+        <div class="stat-desc">Clientes satisfechos</div>
+        <div class="stat-sub">En Argentina y LATAM</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-big">98%</div>
+        <div class="stat-desc">Satisfacción</div>
+        <div class="stat-sub">Tasa de aprobación</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-big">5+</div>
+        <div class="stat-desc">Años de experiencia</div>
+        <div class="stat-sub">Diseño y desarrollo</div>
+      </div>
+    </div>
+  </div>
+</div>
+
 <!-- ══════════════ TRUST BAR ══════════════ -->
 <div class="trust">
   <div class="container trust-inner">
-    <span class="trust-lbl">Trabajos realizados</span>
+    <span class="trust-lbl">Sitios que desarrollamos</span>
     <div class="trust-div"></div>
     <div class="trust-links">
       <a href="https://casaspezia.site" target="_blank" class="trust-link">🏠 casaspezia.site</a>
